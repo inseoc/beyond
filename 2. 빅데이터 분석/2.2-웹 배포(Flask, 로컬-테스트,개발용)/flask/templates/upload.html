@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="중고 옷거래">
+  <meta name="description" content="중고 옷을 좀더 편하게 판매할 수 있도록 도와줍니다">
+  <meta name="author" content="kmr 3조">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>상품 판매</title>
+
+  <!-- CSS 연결 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	
+  <!-- 일반, Flask문법 -->
+  <!-- <link rel="stylesheet" href="../static/login.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/login.css') }}" media="screen">
+</head>
+
+<body>
+  <header>
+    <!-- 헤더_핸드폰 아이콘 -->
+    <div class="header">
+      <div class="header_left">
+        <li name="clock"></li>
+      </div>
+      <div class="header_right">
+        <div class="icon_margin">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="icon_margin">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.242 0 1 1 0 01-1.415-1.415 5 5 0 017.072 0 1 1 0 01-1.415 1.415zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="icon_margin">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" >
+            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 헤더_뒤로가기 박스 -->
+    <div class="box box1">
+      <div >
+        <a href="javascript:history.back();">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 black" viewBox="0 0 20 20" fill="currentColor" style="cursor: pointer;">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        </a>
+      </div>
+      <text class="box1_title">상품 판매</text>
+      <div class="header_link">
+				<i class="fas fa-home font_size black"></i>
+      </div>
+    </div>
+
+    <!-- 헤더 밑 -->
+    <div class="header_bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="cursor: pointer;">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <li class="nav-item">
+        <a class="nav-link user_font" href="#" id="my_page" name="my_page">안녕하세요, 고객님</a>
+      </li>
+    </div>
+  </header>
+
+
+	<!-- form -->
+	<form id="FORM" method="POST" action="./upload_process" enctype="multipart/form-data" runat="server" autocomplete="on">
+		
+		<!-- upload1번 -->
+		<div id="upload1" >		
+			<!-- box1 -->
+			<div class="box box2">
+				<!-- 업로드 사진 미리보기 -->
+				<div class="boxbox">
+					<div class="preview_frame">					
+						<img id="preImage" src="../static/img/preview.png" alt="사진을 업로드 해주세요" class="">					
+					</div>
+				</div>
+				<!-- 업로드 사진 버튼 -->
+				<div class="upload_button">
+					<input type="file" id="file" name="file" class="" hidden/>
+					<a href="#" class="btn btn-danger color_btn2" onclick="$('#file').click();">Upload</a>
+					<input type="button" class="btn btn-success color_btn" id="btnSubmit" onclick="cnn_process()" value="판별하기">
+				</div>
+			</div>
+		
+			<!-- box2 -->
+			<div class="box box_category">
+				<!-- 카테고리 -->
+				<div class="section_space">		
+					<label for="category"><b>카테고리</b></label>
+					<span id="result_category"></span>
+					<select name="category" id="category" class="boxes_shape">
+						<option value="0">긴팔티셔츠</option>
+						<option value="1">셔츠</option>
+						<option value="2">맨투맨_후드</option>
+						<option value="3">면바지</option>
+						<option value="4">반바지</option>
+						<option value="5">반팔</option>
+						<option value="6">블라우스</option>
+						<option value="7">스커트</option>
+						<option value="8">원피스</option>
+						<option value="9">청바지</option>
+						<option value="10">카디건</option>
+						<option value="11">트레이닝복</option>
+						<option value="99" selected>선택</option>
+					</select>
+				</div>
+				
+				<!-- 색상 -->
+				<div class="section_space">
+					<span id="result_color"></span>						
+					<label for="color"><b>색상</b></label>
+					<select name="color" id="color" class="boxes_shape">
+						<option value="0">베이지</option>
+						<option value="1">검정색</option>
+						<option value="2">갈색</option>
+						<option value="3">회색</option>
+						<option value="4">초록색</option>
+						<option value="5">파란색</option>
+						<option value="6">빨간색</option>
+						<option value="7">하얀색</option>
+						<option value="99" selected>선택</option>
+					</select>
+				</div>
+
+				<!-- upload1번 버튼 -->
+				<div align="right">
+					<input type="button" class="btn btn-danger color_btn3" id="" value="다음" onclick="next1()"></input>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- upload2번 -->
+		<div id="upload2" class="upload_page">
+			<!-- box3 -->
+			<div class="box box_price">
+				<!-- 추천 평균가격 -->		
+				<div class="section_space">
+					<div class="price__section">
+						<div>
+							<label for="price"><b>가격&nbsp;&nbsp;</b></label>
+						</div>
+						<div id="result_price"></div>
+					</div>
+
+					<input type="text" id="price" name="price" class="placeholder_font" pattern="[0-9]+" placeholder="원하는 가격을 입력해주세요" required size="20">
+					<div align="right">
+						<input type="button" class="btn btn-danger color_btn3" id="cosinesubmit" value="추천가격" onclick="cosine_process()"></input>
+					</div>
+				</div>
+
+				<!-- 이미지 유사샘플 칸 -->
+				<div class="image_boxes">
+					<div id="result_price_img1" class="price_img1">
+						<div id="box_in_img1" class="box_in_img"></div>
+						<div id="box_in_text1"class="box_in_box"></div>
+					</div>
+					<div id="result_price_img2" class="price_img1">
+						<div id="box_in_img2" class="box_in_img"></div>
+						<div id="box_in_text2"class="box_in_box"></div>
+					</div>
+					<div id="result_price_img3" class="price_img1">
+						<div id="box_in_img3" class="box_in_img"></div>
+						<div id="box_in_text3" class="box_in_box"></div>
+					</div>
+				</div>
+
+				<div class="price_btn_position">
+					<input type="button" class="btn btn-danger color_btn3" id="cosinesubmit" value="이전" onclick="previous1()"></input>
+					<input type="button" class="btn btn-danger color_btn3" id="cosinesubmit" value="다음" onclick="next2()"></input>
+				</div>
+			</div>
+		</div>
+				
+		<!-- upload3번 -->
+		<div id="upload3" class="upload_page">
+			<div class="box box_4">
+				<div class="section_space">	
+				<label for="title"><b>상품이름</b><br></label>
+				<div>
+					<input type="text" id="title" name="title" class="margin_except placeholder_font" placeholder="판매할 제품의 이름을 입력해주세요" required size="20" >
+				</div>
+				</div>
+				<!-- 배송 -->
+				<div class="section_space">						
+					<label for="deliver" ><b>배송</b><br></label>
+					<select name="deliver" id="deliver" class="boxes_shape">
+						<option value="직거래" selected>직거래</option>
+						<option value="선불">선불</option>
+						<option value="착불">착불</option>
+					</select>
+				</div>
+
+				<!-- 세탁여부 -->
+				<div class="section_space">						
+					<label for="washing"><b>세탁여부</b><br></label>
+					<select name="washing" id="washing" class="boxes_shape">
+						<option value="손세탁" selected>손세탁</option>
+						<option value="드라이클리닝">드라이클리닝</option>
+						<option value="세탁기">세탁기</option>
+					</select>
+				</div>
+
+				<!-- 사이즈 -->
+				<div class="section_space">						
+					<label for="size"><b>사이즈</b><br></label>
+					<select name="size" id="size" class="boxes_shape">
+						<option value="S" selected>S(55)</option>
+						<option value="M">M(66)</option>
+						<option value="L">L(77)</option>
+						<option value="XL">XL(88)</option>
+						<option value="XXL">XXL(110)</option>
+						<option value="OTHER">OTHER</option>
+					</select>
+				</div>
+
+				<!-- 중고여부 -->
+				<div class="section_space box_lastline">						
+					<label for="status"><b>상품상태</b><br></label>
+					<select name="status" id="status" class="boxes_shape">
+						<option value="중고" selected>중고</option>
+						<option value="신품">신품</option>
+						<option value="하자있음">하자있음</option>
+					</select>
+				</div>
+
+				<div class="price_btn_position">
+					<input type="button" class="btn btn-danger color_btn3" value="이전" onclick="previous2()"></input>
+					<input type="button" class="btn btn-danger color_btn3" value="다음" onclick="next3()"></input>
+				</div>
+			</div>
+		</div>
+		<!-- upload4번 -->
+		<div id="upload4" class="upload_page">
+			<!-- box5 -->
+			<div class="box box_4">
+				<!-- 판매 설명글 -->
+				<div class="section_space">
+					<label for="contents"><b>추천 설명글</b><br></label>
+					<textarea id="contents" name="contents" class="placeholder_font box_text" cols="50" rows="6" placeholder="판매할 제품을 설명해 주세요" required></textarea></textarea>
+				</div>
+				<div align="right">
+					<!-- <input type="button" class="btn btn-danger color_btn3" id="textsubmit" value="Rnn설명글" onclick="rnn_process()"></input> -->
+					<input type="button" class="btn btn-danger color_btn3" id="textsubmit2" value="설명글추천" onclick="transformer_process()"></input>
+				</div>
+
+				<!-- 상품 등록 버튼 -->
+				<div class="submit_space">
+					<input type="submit" id="upload_submit" class="btn btn-secondary submit_btn" value="등록하기">
+				</div>
+				<div class="price_btn_position1">
+					<input type="button" class="btn btn-danger color_btn3" value="이전" onclick="previous3()"></input>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+	<!-- 임시 -->
+	<!-- <span id="result"></span> -->
+
+	<!-- JavaScript 연결 -->
+	<!-- 일반, Flask문법 -->
+	<!-- <script type="text/javascript" src="../static/market.js"></script> -->
+	<script type="text/javascript" src="{{ url_for('static', filename='../static/market.js') }}"></script>
+</body>
+</html>
