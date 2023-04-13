@@ -1,7 +1,7 @@
 # beyond
 중고거래 상품 등록 및 판매 어드바이저
 
-### 밑의 아이콘 클릭으로 시연 영상 확인 가능!
+### 시연 영상 확인!
 <img src="https://user-images.githubusercontent.com/120366485/231630308-f82f4cc2-304d-4cb9-adc9-6fea964269bb.mp4">
 
 1. 개발 배경
