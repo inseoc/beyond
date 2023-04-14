@@ -21,7 +21,7 @@
   2) 딥러닝
     - YOLOv5, VGG16, LSTM, Transformer
   3) 프론트엔드
-    - html, javascript, acss
+    - html, javascript, css
   4) 백엔드
     - Flask, Mysql, nginX, Gunicorn
   5) AWS
